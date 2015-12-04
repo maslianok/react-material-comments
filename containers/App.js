@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import AppBar from 'material-ui/lib/app-bar';
-import FlatButton from 'material-ui/lib/flat-button';
+
+import TopBar from './../components/TopBar.js';
 
 import './../styles/global.css';
 import s from './../styles/app.js';
@@ -13,23 +13,15 @@ import s from './../styles/app.js';
 injectTapEventPlugin();
 
 class App extends Component {
-
   render() {
-    const { children } = this.props;
-
-    const menuBtns = (
-      <div>
-        <FlatButton key="task1" label="Task1" style={s.menuBtnsStyle} onTouchTap={this._goTo.bind(this, 1)} />
-        <FlatButton key="task2" label="Task2" style={s.menuBtnsStyle} onTouchTap={this._goTo.bind(this, 2)} />
-      </div>
-    );
+    const {children} = this.props;
 
     return (
-      <div className="">
+      <div style={s.app__wrapper}>
         <div>
-          <AppBar style={s.topBarStyles} iconElementLeft={menuBtns} />
+          <TopBar goTo={this._goTo.bind(this)} />
         </div>
-        <div>
+        <div style={s.app__content}>
           {children}
         </div>
       </div>
@@ -37,7 +29,7 @@ class App extends Component {
   }
 
   _goTo(taskNumber) {
-    this.props.pushState(null, `/task${taskNumber}`)
+    this.props.pushState(null, `/task${taskNumber + 1}`)
   }
 }
 
