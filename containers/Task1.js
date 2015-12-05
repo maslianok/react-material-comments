@@ -13,7 +13,7 @@ import s from './../styles/task1.js';
 class Task1 extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     
     this.state = {
       showSearchBlock: false,
@@ -40,7 +40,7 @@ class Task1 extends Component {
 
         <Search showSearchBlock={this.state.showSearchBlock} />
 
-        <CommentsList />
+        <CommentsList comments={this.props.comments} />
 
       </Paper>
     )
@@ -61,12 +61,12 @@ class Task1 extends Component {
 
 Task1.propTypes = {
   actions: PropTypes.object.isRequired,
-  comments: PropTypes.object.isRequired
+  comments: PropTypes.array
 }
 
 function mapStateToProps(state) {
   return {
-    comments: state.comments
+    comments: state.comments.items
   };
 }
 

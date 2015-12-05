@@ -1,10 +1,17 @@
 import React, {Component, PropTypes} from 'react';
+import Paper from 'material-ui/lib/paper';
+
+import s from './../styles/task2.js';
 
 class Task2 extends Component {
 
   render() {
     return (
-      <div>Task 2</div>
+      <Paper zDepth={2} style={s.container}>
+
+        
+
+      </Paper>
     )
   }
 }

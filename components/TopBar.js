@@ -8,11 +8,15 @@ const taskLinks = ['Simple web interface', 'UI Design'];
 
 class TopBar extends Component {
   render() {
-    const {goTo} = this.props;
+    console.log(1, this.props)
+    const {goTo, selectedIndex} = this.props;
 
     const btns = (
       <div>
-        {taskLinks.map((el, i) => <FlatButton key={i} label={el} style={s.topBar__btn} onTouchTap={() => goTo(i)} />)}
+        {taskLinks.map((el, i) => {
+          const btnStyles = Object.assign({}, s.topBar__btn, selectedIndex == i + 1 ? s.topBar__btn_active : {});
+          return <FlatButton key={i} label={el} style={btnStyles} onTouchTap={() => goTo(i)} />
+        })}
       </div>
     );
 

@@ -6,13 +6,13 @@ import DevTools from './DevTools'
 import s from './../styles/app.js';
 
 export default class Root extends Component {
+  // <DevTools />
   render() {
     const { store } = this.props
     return (
       <Provider store={store}>
         <div style={s.root__wrapper}>
           <ReduxRouter />
-          <DevTools />
         </div>
       </Provider>
     )

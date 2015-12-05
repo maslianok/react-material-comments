@@ -9,17 +9,14 @@ const {
   COMMENT_GET_REJECTED
 } = commentActions;
 
-function comments(state = {}, action) {
+function comments(state = {items: []}, action) {
   switch (action.type) {
     case COMMENT_GET_PENDING:
-      return {
-        ...state
-      };
+      return state;
 
     case COMMENT_GET_FULFILLED:
-      let data = action.payload;
       return {
-        ...state,
+        items: action.payload.items
       };
 
     case COMMENT_GET_REJECTED:

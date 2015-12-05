@@ -23,5 +23,9 @@ export default {
     	topBar__btn: {
 	      color: '#fff',
 	      backgroundColor: 'transparent'
-	    }
+	    },
+
+      topBar__btn_active: {
+        backgroundColor: '#009FB3'
+      },
 } 

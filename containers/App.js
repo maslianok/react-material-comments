@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div style={s.app__wrapper}>
         <div>
-          <TopBar goTo={this._goTo.bind(this)} />
+          <TopBar goTo={this._goTo.bind(this)} selectedIndex={this.props.location.pathname.replace('/task', '')} />
         </div>
         <div style={s.app__content}>
           {children}
