@@ -5,3 +5,8 @@ html, body, #root {
 body {
 	margin: 0;
 }
+
+/*fix bug for datepicker floating label*/
+.datepicker > label {
+  pointer-events: none;
+}

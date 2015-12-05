@@ -15,7 +15,14 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.PrefetchPlugin('react'),
+    new webpack.PrefetchPlugin('react/lib/ReactComponentBrowserEnvironment'),
+    new webpack.ProvidePlugin({
+      'es6-promise': 'es6-promise',
+      // 'fetch': 'imports?this=>global!exports?global.fetch!isomorphic-fetch',
+      'object-assign': 'object-assign'
+    })
   ],
   module: {
     loaders: [{
