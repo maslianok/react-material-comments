@@ -61,7 +61,7 @@ export default {
             "parent_obj": []
         },
         {
-            "message": "!! FREE RECHARGE ! FREE RECHARGE ! FREE RECHARGE !!\r\nNOW GET RECHARGE OF 200-500 RUPEES 100% FREE !!\r\n→ » Link: www.indortka.tk",
+            "message": "!! FREE RECHARGE ! FREE RECHARGE ! FREE RECHARGE !!",
             "id": 94033,
             "created_time": "2014-05-01T07:59:57+0000",
             "from": {
@@ -91,7 +91,7 @@ export default {
             "parent_obj": []
         },
         {
-            "message": "Bettur wobh. Turf sodill wol s meat t of pujad sodi woeist okagf shady swuladr woes rockito alt fouls waisme the idiocktr sneak",
+            "message": "Bettur wobh. Turf sodill wol s meat t of pujad sodi woeist okagf",
             "id": 94032,
             "created_time": "2014-05-01T07:59:03+0000",
             "from": {
