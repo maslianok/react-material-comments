@@ -10,10 +10,8 @@ import s from './../../styles/task1.js';
 import RightIconMenu from './RightIconMenu';
 
 class CommentItem extends Component {
-
   render() {
     const {comment} = this.props;
-    console.log(comment);
 
     const iconButtonElement = (
       <IconButton>
@@ -26,14 +24,27 @@ class CommentItem extends Component {
     
     const rightIconMenu = (
       <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem primaryText="Hide" />
-        <MenuItem primaryText="Delete" />
+        <MenuItem
+            primaryText={comment.is_hidden ? "Show" : "Hide"} 
+            onClick={this._toggleVisibility.bind(this, !comment.is_hidden)} />
+        <MenuItem 
+            primaryText={comment.is_deleted ? "Restore" : "Delete"} 
+            onClick={this._toggleDelete.bind(this, !comment.is_deleted)} />
       </IconMenu>
     );
 
+    const itemStyles = {
+      color: comment.is_hidden ? '#aaa' : '#444',
+      textDecoration: comment.is_deleted ? 'line-through' : 'none'
+    }
+    const avatarStyles = {
+      opacity: comment.is_hidden ? 0.3 : 1,
+    }
+
     return (
       <ListItem
-        leftAvatar={<Avatar>{comment.from.name[0]}</Avatar>}
+        style={itemStyles}
+        leftAvatar={<Avatar style={avatarStyles}>{comment.from.name[0]}</Avatar>}
         rightIconButton={rightIconMenu}
         primaryText={comment.from.name}
         secondaryText={<p>{comment.message}</p>}
@@ -45,6 +56,14 @@ class CommentItem extends Component {
   _onClick() {
     var win = window.open(this.props.comment.link, '_blank');
     win.focus();
+  }
+
+  _toggleDelete(shouldDelete) {
+    this.props.deleteAction(this.props.comment.id, shouldDelete);
+  }
+
+  _toggleVisibility(shouldHide) {
+    this.props.hideAction(this.props.comment.id, shouldHide);
   }
 }
 

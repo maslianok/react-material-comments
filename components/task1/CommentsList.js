@@ -6,7 +6,7 @@ import CommentItem from './CommentItem';
 
 class CommentsList extends Component {
   render() {
-    const {comments} = this.props;
+    const {comments, deleteAction, hideAction} = this.props;
 
     if (!comments.length) {
       //TODO add loader
@@ -16,7 +16,13 @@ class CommentsList extends Component {
     return (
       <List>
         {comments.reduce((result, comment) => {
-          result.push(<CommentItem key={comment.id} comment={comment}/>);
+          result.push(
+            <CommentItem 
+              key={comment.id} 
+              comment={comment} 
+              deleteAction={deleteAction} 
+              hideAction={hideAction}/>
+          );
           result.push(<ListDivider key={comment.id + 'divider'} inset={true} />);
           return result;
         }, [])}

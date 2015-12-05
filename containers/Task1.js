@@ -17,11 +17,17 @@ class Task1 extends Component {
     
     this.state = {
       showSearchBlock: false,
-      activeFilter: 'All'
+      activeFilter: 'All',
+      searchText: null,
+      dateFrom: null,
+      dateTo: null
     };
 
     this._onFilter = this._onFilter.bind(this);
     this._onToggleSearchBlock = this._onToggleSearchBlock.bind(this);
+    this._filterComments = this._filterComments.bind(this);
+    this._onSearch = this._onSearch.bind(this);
+    this._onChangeDate = this._onChangeDate.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +35,7 @@ class Task1 extends Component {
   }
 
   render() {
+    const {actions} = this.props;
     return (
       <Paper zDepth={2} style={s.container}>
 
@@ -38,23 +45,73 @@ class Task1 extends Component {
           searchBtnActive={this.state.showSearchBlock}
           activeFilter={this.state.activeFilter} />
 
-        <Search showSearchBlock={this.state.showSearchBlock} />
+        <Search 
+          showSearchBlock={this.state.showSearchBlock} 
+          onChangeDate={this._onChangeDate} 
+          onSearch={this._onSearch} />
 
-        <CommentsList comments={this.props.comments} />
+        <CommentsList 
+          comments={this._filterComments(this.props.comments)} 
+          deleteAction={actions.deleteComment} 
+          hideAction={actions.hideComment} />
 
       </Paper>
     )
   }
 
   _onFilter(type) {
-
-    console.log(type);
-
+    this.setState({
+      activeFilter: type
+    });
   }
 
   _onToggleSearchBlock() {
     this.setState({
       showSearchBlock: !this.state.showSearchBlock
+    });
+  }
+
+  _onSearch(text) {
+    this.setState({
+      searchText: text
+    });
+  }
+
+  _onChangeDate(type, date) {
+    this.setState({
+      [type]: date
+    });
+  }
+
+  _filterComments(comments) {
+    return comments.filter((comment) => {
+      let isVisible = true;
+      switch (this.state.activeFilter) {
+        case 'Visible':
+          isVisible = !comment.is_hidden;
+          break;
+        case 'Hidden':
+          isVisible = comment.is_hidden;
+          break;
+        case 'Deleted':
+          isVisible = comment.is_deleted;
+          break;
+      }
+
+      if (this.state.searchText && 
+        comment.message.indexOf(this.state.searchText) == -1 && 
+        comment.from.name.indexOf(this.state.searchText) == -1) {
+        isVisible = false;
+      }
+
+      const createdDate = new Date(comment.created_time);
+      if (this.state.dateFrom && createdDate < this.state.dateFrom || 
+        this.state.dateTo && createdDate > this.state.dateTo) {
+        isVisible = false;
+      }
+
+      return isVisible;
+
     });
   }
 }

@@ -145,6 +145,7 @@ export default {
             "created_time_ago": "1year 7month ago",
             "status": 1,
             "status_label": "",
+            "is_deleted": true,
             "is_hidden": false,
             "created_time_show": "May 1,2014 10:58",
             "link": "https://www.facebook.com/331288023558058/posts/571739436179581?comment_id=754262871260569",
@@ -175,7 +176,7 @@ export default {
             "created_time_ago": "1year 7month ago",
             "status": 1,
             "status_label": "",
-            "is_hidden": false,
+            "is_hidden": true,
             "created_time_show": "May 1,2014 10:57",
             "link": "https://www.facebook.com/331288023558058/posts/598918303461694?comment_id=754262651260591",
             "parent_obj": []
@@ -205,7 +206,7 @@ export default {
             "created_time_ago": "1year 7month ago",
             "status": 1,
             "status_label": "",
-            "is_hidden": false,
+            "is_hidden": true,
             "created_time_show": "May 1,2014 10:56",
             "link": "https://www.facebook.com/331288023558058/posts/683659491654241?comment_id=754262467927276",
             "parent_obj": []

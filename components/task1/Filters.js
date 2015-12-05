@@ -20,8 +20,12 @@ class Filters extends Component {
       <div style={s.filter__wrapper}>
         {filters.map((e, i) => {
           let filterStyles = {};
-          if (e == 'All') filterStyles = s.filter__allBtn;
-          if (e == activeFilter) filterStyles = Object.assign(filterStyles, s.filter__active);
+          if (e == 'All') {
+            filterStyles = s.filter__allBtn;
+          }
+          if (e == activeFilter) {
+            filterStyles = Object.assign({}, filterStyles, s.filter__active);
+          }
           return <FlatButton key={i} label={e} onTouchTap={() => onFilter(e)} style={filterStyles} />
         })}
       	<FlatButton label="Search tools" style={searchBtnStyles} onTouchTap={onToggleSearchBlock} />

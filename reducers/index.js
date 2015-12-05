@@ -6,7 +6,8 @@ import {commentActions} from '../config/actionTypes';
 const {
   COMMENT_GET_PENDING,
   COMMENT_GET_FULFILLED,
-  COMMENT_GET_REJECTED
+  COMMENT_GET_REJECTED,
+  COMMENT_CHANGE
 } = commentActions;
 
 function comments(state = {items: []}, action) {
@@ -22,6 +23,19 @@ function comments(state = {items: []}, action) {
     case COMMENT_GET_REJECTED:
       return state;
 
+    case COMMENT_CHANGE:
+      const items = state.items.reduce((result, comment) => {
+        if (comment.id == action.id) {
+          result.push({
+            ...comment,
+            [action.prop]: action.value
+          });
+        } else {
+          result.push({...comment});
+        }
+        return result;
+      }, [])
+      return {items};
     default:
       return state;
   }

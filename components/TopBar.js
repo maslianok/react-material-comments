@@ -8,7 +8,6 @@ const taskLinks = ['Simple web interface', 'UI Design'];
 
 class TopBar extends Component {
   render() {
-    console.log(1, this.props)
     const {goTo, selectedIndex} = this.props;
 
     const btns = (
